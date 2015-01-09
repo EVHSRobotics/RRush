@@ -18,15 +18,27 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 
 	/**
-	 * Drive Train Talon Motor IDs
+	 * Drive Train Config
+	 * @author kevin
+	 *
 	 */
 	public static class Drive {
+		/**
+		 * Talon Motor IDs
+		 * @author kevin
+		 *
+		 */
 		public static class Motor {
 			public static final int FL = 1;
 			public static final int FR = 2;
 			public static final int BR = 3;
 			public static final int BL = 4;
 		}
+		/**
+		 * Sensor IDs 
+		 * @author kevin
+		 *
+		 */
 		public static class Sensor{
 			public static final int GYRO = 2;
 			public static class ENCODER {
@@ -34,6 +46,11 @@ public class RobotMap {
 				public static final int A2 = 1;
 			};
 		}
+		/**
+		 * Drive Speeds 
+		 * @author kevin
+		 *
+		 */
 		public static class Speed {
 			public static final double MAX = 1;
 			public static final double FAST = 0.8;

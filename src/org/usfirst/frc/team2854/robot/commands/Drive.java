@@ -22,28 +22,29 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	 double yValue = OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getLeftY(), OI.Config.DEADBAND); 
-         double xValue = OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getLeftX(), OI.Config.DEADBAND);
-         
-         if (yValue < 0 ){
-             yValue *=1.08;//multiplied by 1.08 because joystick forward doesn't send full signal
-         }
-         if (yValue < -1){
-             yValue = -1;
-         }
-         
-         double twist = .7 * OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getTriggers(), OI.Config.DEADBAND); //double deadband
-         double angle = Robot.driveTrain.gyroGetAngle();
-         //System.out.println("A: " +angle);
-
-         if (Robot.oi.getBack()) {
-             Robot.driveTrain.gyroReset();;
-             System.out.println("Gyro Reset");
-         }
-         
-         Robot.driveTrain.mecDrive(xValue, -yValue, -twist, -angle);
-         
-         System.out.println("encoder raw: " + Robot.driveTrain.encoderGetRaw() + "        " + "encoder count: " + Robot.driveTrain.encoderGet());
+//    	 double yValue = OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getLeftY(), OI.Config.DEADBAND); 
+//         double xValue = OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getLeftX(), OI.Config.DEADBAND);
+//         
+//         if (yValue < 0 ){
+//             yValue *=1.08;//multiplied by 1.08 because joystick forward doesn't send full signal
+//         }
+//         if (yValue < -1){
+//             yValue = -1;
+//         }
+//         
+//         double twist = .7 * OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getTriggers(), OI.Config.DEADBAND); //double deadband
+//         double angle = Robot.driveTrain.gyroGetAngle();
+//         //System.out.println("A: " +angle);
+//
+//         if (Robot.oi.getBack()) {
+//             Robot.driveTrain.gyroReset();;
+//             System.out.println("Gyro Reset");
+//         }
+//         
+//         Robot.driveTrain.mecDrive(xValue, -yValue, -twist, -angle);
+//         
+//         System.out.println("encoder raw: " + Robot.driveTrain.encoderGetRaw() + "        " + "encoder count: " + Robot.driveTrain.encoderGet());
+    	System.out.println("encoder count: " + Robot.driveTrain.encoderGet());
     }
 
     // Make this return true when this Command no longer needs to run execute()
