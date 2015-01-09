@@ -40,7 +40,10 @@ public class Drive extends Command {
              Robot.driveTrain.gyroReset();;
              System.out.println("Gyro Reset");
          }
+         
          Robot.driveTrain.mecDrive(xValue, -yValue, -twist, -angle);
+         
+         System.out.println("encoder raw: " + Robot.driveTrain.encoderGetRaw() + "        " + "encoder count: " + Robot.driveTrain.encoderGet());
     }
 
     // Make this return true when this Command no longer needs to run execute()

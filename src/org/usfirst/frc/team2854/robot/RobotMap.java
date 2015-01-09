@@ -28,7 +28,11 @@ public class RobotMap {
 			public static final int BL = 4;
 		}
 		public static class Sensor{
-			public static final int GYRO = 1;
+			public static final int GYRO = 2;
+			public static class ENCODER {
+				public static final int A1 = 0;
+				public static final int A2 = 1;
+			};
 		}
 		public static class Speed {
 			public static final double MAX = 1;

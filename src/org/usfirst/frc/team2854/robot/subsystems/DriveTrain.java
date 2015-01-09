@@ -3,6 +3,8 @@ package org.usfirst.frc.team2854.robot.subsystems;
 import org.usfirst.frc.team2854.robot.RobotMap;
 import org.usfirst.frc.team2854.robot.commands.Drive;
 
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,12 +14,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
     
-	Talon DriveFLMotor;
-	Talon DriveFRMotor;
-	Talon DriveBRMotor;
-	Talon DriveBLMotor;
+	private Talon DriveFLMotor;
+	private Talon DriveFRMotor;
+	private Talon DriveBRMotor;
+	private Talon DriveBLMotor;
 	
-	Gyro driveGyro;
+	private Gyro driveGyro;
+	private Encoder driveEncoder;
 	
 	public DriveTrain() {
 		DriveFLMotor = new Talon(RobotMap.Drive.Motor.FL);
@@ -26,6 +29,8 @@ public class DriveTrain extends Subsystem {
 		DriveBLMotor = new Talon(RobotMap.Drive.Motor.BL);
 		
 		driveGyro = new Gyro(RobotMap.Drive.Sensor.GYRO);
+		driveEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
+		
 	}
 	
 	public void mecDrive(double x, double y, double t, double a){
@@ -68,6 +73,27 @@ public class DriveTrain extends Subsystem {
 	public void gyroReset() {
 		driveGyro.reset();
 	}
+	
+	public int encoderGet(){//Is this rotations? 
+		return driveEncoder.get();
+	}
+	
+	public boolean getDirection(){
+		return driveEncoder.getDirection();
+	}
+	
+	public double getDistance(){
+		return driveEncoder.getDistance();
+	}
+	
+	public double encoderGetRaw() {
+		return driveEncoder.getRaw();
+	}
+	
+	public void encoderReset() {
+		driveEncoder.reset();
+	}
+	
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
