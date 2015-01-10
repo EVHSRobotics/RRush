@@ -13,13 +13,17 @@ public class TestDriveTrain extends Subsystem {
     
 	Talon leftTalon;
 	Talon rightTalon;
+	Talon leftBackTalon;
+	Talon rightBackTalon;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
 	public TestDriveTrain(){
-		leftTalon = new Talon(RobotMap.Drive.TestMotor.left);
-		rightTalon = new Talon(RobotMap.Drive.TestMotor.right);
+		leftTalon = new Talon(RobotMap.Drive.TestMotor.FL);
+		rightTalon = new Talon(RobotMap.Drive.TestMotor.FR);
+		leftBackTalon = new Talon(RobotMap.Drive.TestMotor.BL);
+		rightBackTalon = new Talon(RobotMap.Drive.TestMotor.BR);
 	}
 	
     public void initDefaultCommand() {
@@ -29,7 +33,9 @@ public class TestDriveTrain extends Subsystem {
     
     public void drive(double left, double right){
     	leftTalon.set(left);
+    	leftBackTalon.set(left);
     	rightTalon.set(right);
+    	rightBackTalon.set(right);
     }
 }
 
