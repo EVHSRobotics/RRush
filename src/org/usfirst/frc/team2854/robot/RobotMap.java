@@ -58,6 +58,15 @@ public class RobotMap {
 			public static final double SLOW = 0.3;
 			public static final double OFF = 0;
 		}
+		/**
+		 * Test Drive Talons
+		 * @author anton
+		 * 
+		 */
+		public static class TestMotor{
+			public static final int left = 0;
+			public static final int right = 1;
+		}
 	}
 
 }

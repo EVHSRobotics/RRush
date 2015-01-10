@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2854.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2854.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2854.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +25,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	public static final DriveTrain driveTrain = new DriveTrain();
+	
+	public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
 
     Command autonomousCommand;
 
