@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
     
 	private Talon DriveFLMotor;
 	private Talon DriveFRMotor;
@@ -23,6 +24,7 @@ public class DriveTrain extends Subsystem {
 	private Encoder driveEncoder;
 	
 	public DriveTrain() {
+		super("DriveTrain", RobotMap.Drive.PID.P, RobotMap.Drive.PID.I , RobotMap.Drive.PID.D); //set PID values
 		DriveFLMotor = new Talon(RobotMap.Drive.Motor.FL);
 		DriveFRMotor = new Talon(RobotMap.Drive.Motor.FR);
 		DriveBRMotor = new Talon(RobotMap.Drive.Motor.BR);
@@ -32,6 +34,9 @@ public class DriveTrain extends Subsystem {
 		driveEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
 		
 	}
+	
+	// Put methods for controlling this subsystem
+    // here. Call these from Commands.
 	
 	public void mecDrive(double x, double y, double t, double a){
 	    double temp = y*Math.cos(Math.toRadians(a)) - x*Math.sin(Math.toRadians(a));
@@ -66,6 +71,10 @@ public class DriveTrain extends Subsystem {
 	    DriveBLMotor.set(-back_left); //inverts motor
 	}
 	
+	public void PIDdrive(double output){
+		mecDrive(0, output, 0, 0);
+	}
+	
 //	public double gyroGetAngle() {
 //		return driveGyro.getAngle();
 //	}
@@ -77,31 +86,37 @@ public class DriveTrain extends Subsystem {
 	public int encoderGet(){//Is this rotations? 
 		return driveEncoder.get();
 	}
-//	
-//	public boolean getDirection(){
-//		return driveEncoder.getDirection();
-//	}
-//	
-//	public double getDistance(){
-//		return driveEncoder.getDistance();
-//	}
-//	
-//	public double encoderGetRaw() {
-//		return driveEncoder.getRaw();
-//	}
-//	
-//	public void encoderReset() {
-//		driveEncoder.reset();
-//	}
 	
+	public boolean getDirection(){
+		return driveEncoder.getDirection();
+	}
 	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	public double getDistance(){
+		return driveEncoder.getDistance();
+	}
+	
+	public double encoderGetRaw() {
+		return driveEncoder.getRaw();
+	}
+	
+	public void encoderReset() {
+		driveEncoder.reset();
+	}
 
-    public void initDefaultCommand() {
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new Drive());
     }
+
+	@Override
+	protected double returnPIDInput() {
+		return getDistance();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		PIDdrive(output);
+	}
 }
 

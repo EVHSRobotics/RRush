@@ -60,7 +60,7 @@ public class RobotMap {
 		}
 		/**
 		 * Test Drive Talons
-		 * @author anton
+		 * 
 		 * 
 		 */
 		public static class TestMotor{
@@ -68,6 +68,14 @@ public class RobotMap {
 			public static final int FR = 1;
 			public static final int BR = 3;
 			public static final int BL = 4;
+		}
+		/**
+		 * PID Gains
+		 */
+		public static class PID{
+			public static final double P = 1.0;
+			public static final double I = 0.0;
+			public static final double D = 0.0;
 		}
 	}
 
