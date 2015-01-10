@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TestDrive extends Command {
 
+	public static final double PERCENTAGE = 0.5;
+	
     public TestDrive() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.testDriveTrain);
@@ -23,8 +25,8 @@ public class TestDrive extends Command {
     protected void execute() {
     	double leftValue = Robot.oi.getLeftY(); 
     	double rightValue = Robot.oi.getRightY();
-    	
-    	Robot.testDriveTrain.drive(leftValue, rightValue);
+    	    	
+    	Robot.testDriveTrain.drive(leftValue * PERCENTAGE, rightValue * PERCENTAGE);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,6 +42,6 @@ public class TestDrive extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	Robot.testDriveTrain.drive(0,0);
     }
 }

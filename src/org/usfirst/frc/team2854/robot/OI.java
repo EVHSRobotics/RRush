@@ -52,11 +52,11 @@ public class OI {
 	}
 
 	public double getLeftX() {
-		return controller.getRawAxis(1);
+		return controller.getRawAxis(0); // originally 1, but 1 is the y-axis
 	}
 
 	public double getLeftY() {
-		return controller.getRawAxis(2);
+		return controller.getRawAxis(1); // originally 2, but 2 is z-axis
 	}
 
 	public double getRightX() {

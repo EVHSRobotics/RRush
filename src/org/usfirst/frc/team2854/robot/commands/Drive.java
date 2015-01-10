@@ -13,7 +13,7 @@ public class Drive extends Command {
     public Drive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.driveTrain);
+    	//requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -44,7 +44,7 @@ public class Drive extends Command {
 //         Robot.driveTrain.mecDrive(xValue, -yValue, -twist, -angle);
 //         
 //         System.out.println("encoder raw: " + Robot.driveTrain.encoderGetRaw() + "        " + "encoder count: " + Robot.driveTrain.encoderGet());
-    	System.out.println("encoder count: " + Robot.driveTrain.encoderGet());
+    	//System.out.println("encoder count: " + Robot.driveTrain.encoderGet());
     }
 
     // Make this return true when this Command no longer needs to run execute()
