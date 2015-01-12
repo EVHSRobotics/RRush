@@ -25,6 +25,9 @@ public class DriveTrain extends PIDSubsystem {
 	
 	public DriveTrain() {
 		super("DriveTrain", RobotMap.Drive.PID.P, RobotMap.Drive.PID.I , RobotMap.Drive.PID.D); //set PID values
+		setAbsoluteTolerance(0.05); // given value on wpilib, should be changed
+		getPIDController().setContinuous(true); // true because it measures rotations
+		
 		DriveFLMotor = new Talon(RobotMap.Drive.Motor.FL);
 		DriveFRMotor = new Talon(RobotMap.Drive.Motor.FR);
 		DriveBRMotor = new Talon(RobotMap.Drive.Motor.BR);
@@ -38,7 +41,7 @@ public class DriveTrain extends PIDSubsystem {
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	public void mecDrive(double x, double y, double t, double a){
+	public void mecDrive(double x, double y, double t, double a){ 
 	    double temp = y*Math.cos(Math.toRadians(a)) - x*Math.sin(Math.toRadians(a));
 	    x = y*Math.sin(Math.toRadians(a)) + x*Math.cos(Math.toRadians(a));
 	    y = temp;
@@ -71,8 +74,15 @@ public class DriveTrain extends PIDSubsystem {
 	    DriveBLMotor.set(-back_left); //inverts motor
 	}
 	
-	public void PIDdrive(double output){
-		mecDrive(0, output, 0, 0);
+	public void turn(double degrees){
+		mecDrive(0,0,0,degrees);
+	}
+	
+	public void goForward(double speed){
+		DriveFLMotor.set(-speed); //inverts motor
+	    DriveFRMotor.set(speed);
+	    DriveBRMotor.set(speed);
+	    DriveBLMotor.set(-speed); //inverts motor
 	}
 	
 //	public double gyroGetAngle() {
@@ -102,21 +112,25 @@ public class DriveTrain extends PIDSubsystem {
 	public void encoderReset() {
 		driveEncoder.reset();
 	}
+	
+	public void setPIDValue(double setPoint){ // set the distance the robot will travel
+		setSetpoint(setPoint);
+	}
 
+	@Override
+	protected double returnPIDInput() {
+		return getDistance(); // multiply by constant (ratio of wheel radius to encoder radius) to get correct distance
+	}
+
+	@Override
+	protected void usePIDOutput(double output) { // adjust PID gains to get correct speeds
+		goForward(output);
+	}
+	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new Drive());
     }
-
-	@Override
-	protected double returnPIDInput() {
-		return getDistance();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		PIDdrive(output);
-	}
 }
 
