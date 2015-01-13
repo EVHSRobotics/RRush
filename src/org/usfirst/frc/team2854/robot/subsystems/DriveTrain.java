@@ -41,6 +41,7 @@ public class DriveTrain extends PIDSubsystem {
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
+	/*Drive Methods*/
 	public void mecDrive(double x, double y, double t, double a){ 
 	    double temp = y*Math.cos(Math.toRadians(a)) - x*Math.sin(Math.toRadians(a));
 	    x = y*Math.sin(Math.toRadians(a)) + x*Math.cos(Math.toRadians(a));
@@ -85,6 +86,7 @@ public class DriveTrain extends PIDSubsystem {
 	    DriveBLMotor.set(-speed); //inverts motor
 	}
 	
+	/*Gyro Methods*/
 //	public double gyroGetAngle() {
 //		return driveGyro.getAngle();
 //	}
@@ -93,6 +95,8 @@ public class DriveTrain extends PIDSubsystem {
 //		driveGyro.reset();
 //	}
 //	
+	
+	/*Encoder Methods*/
 	public int encoderGet(){//Is this rotations? 
 		return driveEncoder.get();
 	}
@@ -113,6 +117,8 @@ public class DriveTrain extends PIDSubsystem {
 		driveEncoder.reset();
 	}
 	
+	
+	/*PID Methods*/
 	public void setPIDValue(double setPoint){ // set the distance the robot will travel
 		setSetpoint(setPoint);
 	}
@@ -127,10 +133,11 @@ public class DriveTrain extends PIDSubsystem {
 		goForward(output);
 	}
 	
+	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Drive());
+    	//setDefaultCommand(new Drive());
     }
 }
 
