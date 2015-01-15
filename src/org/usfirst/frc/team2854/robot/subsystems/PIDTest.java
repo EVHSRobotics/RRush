@@ -31,8 +31,13 @@ public class PIDTest extends PIDSubsystem {
         setDefaultCommand(new PIDTestCommand());
     }
     
+    public void reset() {
+    	PIDTestEncoder.reset();
+    }
+    
     public double getDistance(){
     	return PIDTestEncoder.getDistance();
+    	//return PIDTestEncoder.getRaw();
     }
     
     public void setPoint(double distance){

@@ -16,12 +16,19 @@ public class PIDTestCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.testPID.setPoint(1);
+    	Robot.testPID.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println("encoder distance: " + Robot.testPID.getDistance());
+    	if(Robot.oi.getA()) {
+    		Robot.testPID.setPoint(1);
+    	}
+    	
+    	if(Robot.oi.getB()) {
+    		Robot.testPID.setPoint(6);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
