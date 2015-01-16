@@ -24,9 +24,9 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 
-	public static final DriveTrain driveTrain = new DriveTrain();
+	//public static final DriveTrain driveTrain = new DriveTrain();
 	
-	public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
+	//public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
 	
 	public static final PIDTest testPID = new PIDTest();
 

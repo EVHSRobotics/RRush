@@ -11,7 +11,7 @@ public class TestDrive extends Command {
 
 	public TestDrive() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.testDriveTrain);
+		//requires(Robot.testDriveTrain);
 	}
 
 	// Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class TestDrive extends Command {
 		double leftValue = Robot.oi.getLeftY();
 		double rightValue = Robot.oi.getRightY();
 
-		Robot.testDriveTrain.drive(leftValue, rightValue);
+		//Robot.testDriveTrain.drive(leftValue, rightValue);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -33,7 +33,7 @@ public class TestDrive extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.testDriveTrain.drive(0, 0);
+		//Robot.testDriveTrain.drive(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same

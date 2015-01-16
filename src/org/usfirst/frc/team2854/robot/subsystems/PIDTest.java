@@ -22,6 +22,8 @@ public class PIDTest extends PIDSubsystem {
 	public PIDTest(){
 		super("PIDTest",RobotMap.Drive.PID.P,RobotMap.Drive.PID.I,RobotMap.Drive.PID.D);
 		
+		setAbsoluteTolerance(5);
+		
 		PIDTestTalon = new Talon(4);
 		PIDTestEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
 	}
@@ -29,6 +31,14 @@ public class PIDTest extends PIDSubsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new PIDTestCommand());
+    }
+    
+    public void enablePid() {
+    	enable();
+    }
+    
+    public void disablePid() {
+    	disable();
     }
     
     public void reset() {
@@ -40,7 +50,7 @@ public class PIDTest extends PIDSubsystem {
     	//return PIDTestEncoder.getRaw();
     }
     
-    public void setPoint(double distance){
+    public void setDistance(double distance){
     	setSetpoint(distance);
     }
 
@@ -51,7 +61,8 @@ public class PIDTest extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		PIDTestTalon.set(output);
+		System.out.println("output: " + output);
+		PIDTestTalon.pidWrite(-output);
 	}
 }
 

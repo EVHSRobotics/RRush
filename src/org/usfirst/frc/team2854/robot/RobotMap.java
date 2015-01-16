@@ -74,9 +74,9 @@ public class RobotMap {
 		 * 
 		 */
 		public static class PID{
-			public static final double P = 0.1; // low value for safety
-			public static final double I = 0.1;
-			public static final double D = 0.1;
+			public static final double P = 0.002; // low value for safety
+			public static final double I = 0.0002;
+			public static final double D = 0;
 		}
 	}
 
