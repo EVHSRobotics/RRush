@@ -6,6 +6,7 @@ import org.usfirst.frc.team2854.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2854.robot.subsystems.PIDTest;
 import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -29,6 +30,8 @@ public class Robot extends IterativeRobot {
 	//public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
 	
 	public static final PIDTest testPID = new PIDTest();
+	
+	CameraServer server;
 
     Command autonomousCommand;
 
@@ -41,6 +44,11 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
+        
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        //the camera name (ex "cam0") can be found through the roborio web interface
+        server.startAutomaticCapture("cam0");
     }
 	
 	public void disabledPeriodic() {
