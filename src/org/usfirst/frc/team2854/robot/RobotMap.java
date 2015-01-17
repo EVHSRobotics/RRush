@@ -45,6 +45,7 @@ public class RobotMap {
 				public static final int A1 = 0;
 				public static final int A2 = 1;
 			};
+			public static final int LIMIT_SWITCH = 2;
 		}
 		/**
 		 * Drive Speeds 
