@@ -52,11 +52,11 @@ public class OI {
 	}
 
 	public double getLeftX() {
-		return controller.getRawAxis(0);
+		return controller.getRawAxis(0); // originally 1, but axis numbers are zero based 
 	}
 
 	public double getLeftY() {
-		return controller.getRawAxis(1);
+		return controller.getRawAxis(1); // originally 2, but axis numbers are zero based 
 	}
 
 	public double getRightX() {
@@ -67,7 +67,11 @@ public class OI {
 		return controller.getRawAxis(5);
 	}
 
-	public double getTriggers() {
+	public double getLeftTrigger() {
+		return controller.getRawAxis(2);
+	}
+	
+	public double getRightTrigger() {
 		return controller.getRawAxis(3);
 	}
 
@@ -103,6 +107,7 @@ public class OI {
 		return controller.getRawButton(8);
 	}
 
+	//2013 numbers (may have changed)
 	// Axis indexes:
 	// 1 - LeftX
 	// 2 - LeftY

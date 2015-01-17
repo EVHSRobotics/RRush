@@ -33,9 +33,9 @@ public class PIDTest extends PIDSubsystem {
         setDefaultCommand(new PIDTestCommand());
     }
     
-    public void regularDrive(double power){
-    	PIDTestTalon.set(power);
-    }
+//    public void drive(double power){
+//    	PIDTestTalon.set(power);
+//    }
     
     public void enablePid() {
     	enable();
@@ -68,7 +68,7 @@ public class PIDTest extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		System.out.println("output: " + output + "    encoder distance: " + getDistance() + "    encoder raw: " + encoderGet());
+		System.out.println("encoder distance: " + getDistance());
 		PIDTestTalon.pidWrite(-output);
 	}
 }
