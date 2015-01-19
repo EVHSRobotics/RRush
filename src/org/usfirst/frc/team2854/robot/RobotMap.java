@@ -80,5 +80,8 @@ public class RobotMap {
 			public static final double D = 0;
 		}
 	}
-
+	
+	public static class Lift{
+		public static final int TALON = 5;
+	}
 }
