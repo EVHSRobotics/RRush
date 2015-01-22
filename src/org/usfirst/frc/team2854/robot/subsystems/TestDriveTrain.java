@@ -35,9 +35,9 @@ public class TestDriveTrain extends Subsystem {
 	public void drive(double left, double right) {
 		left = Robot.oi.fixDeadBand(left, 0.1);
 		right = Robot.oi.fixDeadBand(right, 0.1);
-		leftTalon.set(left);
-		leftBackTalon.set(left);
-		rightTalon.set(-right); // one side is opposite of other
-		rightBackTalon.set(-right);
+		leftTalon.set(-left);
+		leftBackTalon.set(-left);
+		rightTalon.set(right); // one side is opposite of other
+		rightBackTalon.set(right);
 	}
 }

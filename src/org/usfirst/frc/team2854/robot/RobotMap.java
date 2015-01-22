@@ -64,9 +64,9 @@ public class RobotMap {
 		 * 
 		 */
 		public static class TestMotor{
-			public static final int FL = 1;
-			public static final int FR = 2;
-			public static final int BR = 3;
+			public static final int FL = 2;
+			public static final int FR = 3;
+			public static final int BR = 1;
 			public static final int BL = 4;
 		}
 	}

@@ -60,10 +60,10 @@ public class DriveTrain extends Subsystem {
 	      front_left/=max; front_right/=max; back_left/=max; back_right/=max;
 
 	    }
-	    DriveFLMotor.set(-front_left); //inverts motor
-	    DriveFRMotor.set(front_right);
-	    DriveBRMotor.set(back_right);
-	    DriveBLMotor.set(-back_left); //inverts motor
+	    DriveFLMotor.set(front_left); 
+	    DriveFRMotor.set(-front_right);//inverts motor
+	    DriveBRMotor.set(-back_right);//inverts motor
+	    DriveBLMotor.set(back_left); 
 	}
 	
 //	public double gyroGetAngle() {

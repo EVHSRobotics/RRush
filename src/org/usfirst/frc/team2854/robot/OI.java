@@ -44,7 +44,7 @@ public class OI {
 	public Joystick controller;
 
 	public OI() {
-		controller = new Joystick(1);
+		controller = new Joystick(0);
 	}
 
 	public Joystick getJoystick() {
