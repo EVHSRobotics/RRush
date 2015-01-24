@@ -3,6 +3,7 @@ package org.usfirst.frc.team2854.robot;
 
 import org.usfirst.frc.team2854.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2854.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2854.robot.subsystems.Lift;
 import org.usfirst.frc.team2854.robot.subsystems.PIDTest;
 import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
 
@@ -27,7 +28,9 @@ public class Robot extends IterativeRobot {
 
 	//public static final DriveTrain driveTrain = new DriveTrain();
 	
-	//public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
+	public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
+	
+	public static final Lift lift = new Lift();
 	
 	public static final PIDTest testPID = new PIDTest();
 	

@@ -27,7 +27,7 @@ public class PIDTest extends PIDSubsystem {
 		
 		setAbsoluteTolerance(5);
 		
-		PIDTestTalon = new Talon(4);
+		//PIDTestTalon = new Talon(4);
 		PIDTestEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
 		PIDLimitSwitch = new DigitalInput(RobotMap.Drive.Sensor.LIMIT_SWITCH);
 	}
