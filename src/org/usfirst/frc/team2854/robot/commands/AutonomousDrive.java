@@ -24,12 +24,16 @@ public class AutonomousDrive extends Command {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.testDriveTrain);
     	choice = input;
+    	System.out.println("choice is: " + choice);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("initialized");
+    	
     	Robot.testDriveTrain.drive(0,0);
-    	Robot.testDriveTrain.gyroReset();
+    	//Robot.testDriveTrain.gyroReset();
+    	setTimeout(1);
     	
     	if(choice == 1){ //go forward
     		Robot.testDriveTrain.drive(RobotMap.Drive.Speed.MID, RobotMap.Drive.Speed.MID);	
@@ -39,6 +43,10 @@ public class AutonomousDrive extends Command {
     		Robot.testDriveTrain.drive(-RobotMap.Drive.Speed.SLOW,RobotMap.Drive.Speed.SLOW);
     	}else if(choice == 4){ //go into auto zone
     		Robot.testDriveTrain.drive(RobotMap.Drive.Speed.FAST, RobotMap.Drive.Speed.FAST);
+    	}
+    	
+    	else if(choice == 5){
+    		Robot.testDriveTrain.drive(0.2,0.2);
     	}
     }	
 
@@ -65,19 +73,23 @@ public class AutonomousDrive extends Command {
     			finished = true;
     		}
     	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.testDriveTrain.drive(0, 0);
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.testDriveTrain.drive(0, 0);
     }
 }

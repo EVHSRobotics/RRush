@@ -11,7 +11,7 @@ public class LimitSwitchTest extends Command {
 
     public LimitSwitchTest() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.testPID);
+        //requires(Robot.testPID);
     }
 
     // Called just before this Command runs the first time
@@ -20,13 +20,13 @@ public class LimitSwitchTest extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.testPID.isSwitchOn()){
-    		System.out.println("yes");
-    		Robot.testPID.drive(0);
-    	}else{
-    		System.out.println("no");
-    		Robot.testPID.drive(0.3);
-    	}
+//    	if(Robot.testPID.isSwitchOn()){
+//    		System.out.println("yes");
+//    		Robot.testPID.drive(0);
+//    	}else{
+//    		System.out.println("no");
+//    		Robot.testPID.drive(0.3);
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

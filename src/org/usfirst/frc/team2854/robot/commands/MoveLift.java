@@ -14,23 +14,23 @@ public class MoveLift extends Command {
 	
     public MoveLift(double input) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.lift);
+        //requires(Robot.lift);
         height = input;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.lift.encoderReset();
+    	//Robot.lift.encoderReset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(height > Robot.lift.encoderDistance()){
-    		Robot.lift.move(0.3);
-    	}else{
-    		Robot.lift.move(0);
-    		finished = true;
-    	}
+//    	if(height > Robot.lift.encoderDistance()){
+//    		Robot.lift.move(0.3);
+//    	}else{
+//    		Robot.lift.move(0);
+//    		finished = true;
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

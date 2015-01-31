@@ -2,6 +2,7 @@ package org.usfirst.frc.team2854.robot.subsystems;
 
 import org.usfirst.frc.team2854.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
@@ -32,8 +33,9 @@ public class TestDriveTrain extends Subsystem {
 		leftBackTalon = new Talon(RobotMap.Drive.TestMotor.BL);
 		rightBackTalon = new Talon(RobotMap.Drive.TestMotor.BR);
 		
-		driveLimitSwitch = new DigitalInput(RobotMap.Drive.Sensor.LIMIT_SWITCH);
-		driveGyro = new Gyro(RobotMap.Drive.Sensor.GYRO);
+		//driveLimitSwitch = new DigitalInput(RobotMap.Drive.Sensor.LIMIT_SWITCH);
+		//driveGyro = new Gyro(RobotMap.Drive.Sensor.GYRO);
+		//driveEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
 	}
 	
     public void initDefaultCommand() {

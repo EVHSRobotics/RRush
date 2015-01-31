@@ -11,27 +11,27 @@ public class PIDTestCommand extends Command {
 
     public PIDTestCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.testPID);
+        //requires(Robot.testPID);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.testPID.reset();
-    	Robot.testPID.enablePid();
+    	//Robot.testPID.reset();
+    	//Robot.testPID.enablePid();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.getA()) {
-    		Robot.testPID.setDistance(200);
-    	}
-    	
-    	if(Robot.oi.getB()) {
-    		Robot.testPID.setDistance(-200);
-    	}
-    	if(Robot.testPID.isSwitchOn()){
-    		System.out.println("pressed");
-    	}
+//    	if(Robot.oi.getA()) {
+//    		Robot.testPID.setDistance(200);
+//    	}
+//    	
+//    	if(Robot.oi.getB()) {
+//    		Robot.testPID.setDistance(-200);
+//    	}
+//    	if(Robot.testPID.isSwitchOn()){
+//    		System.out.println("pressed");
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -41,14 +41,14 @@ public class PIDTestCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.testPID.disablePid();
+    	//Robot.testPID.disablePid();
     	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.testPID.disablePid();
-    	Robot.testPID.reset(); // allows us to enable and disable code without having to re-deploy to update setDistance
+    	//Robot.testPID.disablePid();
+    	//Robot.testPID.reset(); // allows us to enable and disable code without having to re-deploy to update setDistance
     }
 }
