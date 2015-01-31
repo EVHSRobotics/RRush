@@ -69,6 +69,12 @@ public class RobotMap {
 			public static final int BR = 3;
 			public static final int BL = 4;
 		}
+		
+		public static class PID{
+			public static final double P = 0.001;
+			public static final double I = 0.001;
+			public static final double D = 0.001;
+		}
 	}
 
 }
