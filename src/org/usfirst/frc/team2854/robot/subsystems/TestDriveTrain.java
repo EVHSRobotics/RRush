@@ -5,6 +5,7 @@ import org.usfirst.frc.team2854.robot.RobotMap;
 import org.usfirst.frc.team2854.robot.commands.TestDrive;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,17 +19,19 @@ public class TestDriveTrain extends Subsystem {
 	Talon rightTalon;
 	Talon leftBackTalon;
 	Talon rightBackTalon;
-
+	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public TestDriveTrain() {
-		/*
-		leftTalon = new Talon(RobotMap.Drive.TestMotor.FL);
-		rightTalon = new Talon(RobotMap.Drive.TestMotor.FR);
-		leftBackTalon = new Talon(RobotMap.Drive.TestMotor.BL);
-		rightBackTalon = new Talon(RobotMap.Drive.TestMotor.BR);
-		*/
+		
+		//leftTalon = new Talon(RobotMap.Drive.TestMotor.FL);
+		//rightTalon = new Talon(RobotMap.Drive.TestMotor.FR);
+		//leftBackTalon = new Talon(RobotMap.Drive.TestMotor.BL);
+		//rightBackTalon = new Talon(RobotMap.Drive.TestMotor.BR);
+		
+		
+		
 		//touchSensor = new DigitalInput(RobotMap.Drive.Sensor.touchSwitchPort);
 	}
 
