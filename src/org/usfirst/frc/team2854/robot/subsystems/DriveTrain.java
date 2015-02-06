@@ -20,7 +20,7 @@ public class DriveTrain extends Subsystem {
 	private Talon DriveBLMotor;
 	
 //	private Gyro driveGyro;
-	private Encoder driveEncoder;
+	//private Encoder driveEncoder;
 	
 	public DriveTrain() {
 		DriveFLMotor = new Talon(RobotMap.Drive.Motor.FL);
@@ -29,7 +29,7 @@ public class DriveTrain extends Subsystem {
 		DriveBLMotor = new Talon(RobotMap.Drive.Motor.BL);
 		
 //		driveGyro = new Gyro(RobotMap.Drive.Sensor.GYRO);
-		driveEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
+		//driveEncoder = new Encoder(RobotMap.Drive.Sensor.ENCODER.A1, RobotMap.Drive.Sensor.ENCODER.A2, false, CounterBase.EncodingType.k4X);
 		
 	}
 	
@@ -74,9 +74,9 @@ public class DriveTrain extends Subsystem {
 //		driveGyro.reset();
 //	}
 //	
-	public int encoderGet(){//Is this rotations? 
+	/*public int encoderGet(){//Is this rotations? 
 		return driveEncoder.get();
-	}
+	}*/
 //	
 //	public boolean getDirection(){
 //		return driveEncoder.getDirection();

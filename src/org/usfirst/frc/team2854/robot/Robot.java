@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team2854.robot;
 
+import org.usfirst.frc.team2854.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2854.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2854.robot.commands.NoAction;
 import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
+import org.usfirst.frc.team2854.robot.subsystems.Elevation;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,13 +23,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	
+	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem()
 	public static OI oi;
 	
 	//public static final DriveTrain driveTrain = new DriveTrain();
 	
 	public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
+	public static final Elevation elevationSystem = new Elevation();
 	
 	//options for autonomous 
 	SendableChooser autoChooser;
@@ -49,9 +51,13 @@ public class Robot extends IterativeRobot {
     }
 	
 	private void dashboard() {
+		SmartDashboard.putNumber("Elevation Speed", .8);
+		SmartDashboard.putNumber("Teleop Drive Speed", 1);
+		SmartDashboard.putNumber("Autonomous Drive Speed", 1);
 		SmartDashboard.putNumber("test", 3.1415926535897932384626433);
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new NoAction());
+		autoChooser.addObject("Experimental Auto", new AutonomousCommand());
 		SmartDashboard.putData("Autonomous Mode Choooser", autoChooser);
 	}
 

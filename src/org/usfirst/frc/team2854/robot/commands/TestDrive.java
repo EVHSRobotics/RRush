@@ -4,13 +4,16 @@ import org.usfirst.frc.team2854.robot.OI;
 import org.usfirst.frc.team2854.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class TestDrive extends Command {
 
-	public static final double PERCENTAGE = 0.5;
+	public  double drivePercentage = 1;
+	double leftValue; 
+	double rightValue;
 	
     public TestDrive() {
         // Use requires() here to declare subsystem dependencies
@@ -20,14 +23,35 @@ public class TestDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     }
+    
+    protected void adjustFullValues(){
+    	if(leftValue < -.9){ //full forward doesn't send -1
+    		leftValue = -1;
+    	}else if(leftValue > .9){
+    		leftValue = 1;
+    	}
+    	if(rightValue < -.9){
+    		rightValue = -1;
+    	}else if(rightValue > .9){
+    		rightValue = 1;
+    	}
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double leftValue = Robot.oi.getLeftY(); 
-    	double rightValue = Robot.oi.getRightY();
+    	if(Robot.oi.getStart()){
+    		
+        	drivePercentage = SmartDashboard.getNumber("Teleop Drive Speed", drivePercentage);
+        	System.out.println("NEW Drive SPEED: " + drivePercentage);
+    	}
+    	
+    	leftValue = Robot.oi.getLeftY(); 
+    	rightValue = Robot.oi.getRightY();
+    	
+    	adjustFullValues();
     	
     	    	
-    	Robot.testDriveTrain.drive(leftValue * PERCENTAGE, rightValue * PERCENTAGE);
+    	Robot.testDriveTrain.drive(leftValue * drivePercentage, rightValue * drivePercentage);
     }
 
     // Make this return true when this Command no longer needs to run execute()
