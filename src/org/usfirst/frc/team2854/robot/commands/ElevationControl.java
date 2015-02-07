@@ -53,10 +53,13 @@ public static double elevationSpeed = 0.8;
     			Robot.elevationSystem.eEnable();
     		}
     		Robot.elevationSystem.setDistance(RobotMap.Elevation.setPoint.TOP);
-    	}/*else{
-    		Robot.elevationSystem.safeMove(0);
+    	}else{
+    		if(!Robot.elevationSystem.isEnabled()){
+        		Robot.elevationSystem.safeMove(0);
+
+    		}
     		
-    	}*/
+    	}
     }
     
     protected void updateSwitches(){
