@@ -18,6 +18,7 @@ public static double elevationSpeed = 0.8;
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.elevationSystem.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -51,6 +52,8 @@ public static double elevationSpeed = 0.8;
     		}
     	}
     }
+    
+   
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

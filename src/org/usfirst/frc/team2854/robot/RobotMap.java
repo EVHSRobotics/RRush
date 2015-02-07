@@ -31,8 +31,12 @@ public class RobotMap {
 			public static int channel1 = 2;
 			public static int channel2 = 3;
 			public static int topSwitchPort = 1;
-			public static int bottomSwitchPort = 0;
-			
+			public static int bottomSwitchPort = 0;	
+		}
+		public static class ePID{
+			public static final double P = 0.001;
+			public static final double I = 0.001;
+			public static final double D = 0.001;
 		}
 	}
 	

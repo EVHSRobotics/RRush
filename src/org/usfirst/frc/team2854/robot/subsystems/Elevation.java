@@ -8,30 +8,35 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Elevation extends Subsystem {
+public class Elevation extends PIDSubsystem {
 	//Talon elevationTalon1;
 	//Talon elevationTalon2;
 	Talon elevationTalon1;
 	Talon elevationTalon2;
-	//Encoder encoder;
+	
+	Encoder elevationEncoder;
+	
 	DigitalInput bottomSwitch;
 	DigitalInput topSwitch;
+	
+	
 	int limitReached = 0; // -1 is bottom, 1 is top
 
 	public Elevation() {
+		super("Elevation",RobotMap.Elevation.ePID.P,RobotMap.Elevation.ePID.I,RobotMap.Elevation.ePID.D);
 		/*
 		elevationTalon1 = new Talon(RobotMap.Elevation.eMotors.EM1);
 		elevationTalon2 = new Talon(RobotMap.Elevation.eMotors.EM2);
 		*/
 		elevationTalon1 = new Talon(1);
 		elevationTalon2 = elevationTalon1;
-		//encoder = new Encoder(RobotMap.Elevation.eSensors.channel1,
-				//RobotMap.Elevation.eSensors.channel2, false, EncodingType.k4X);
+		elevationEncoder = new Encoder(RobotMap.Elevation.eSensors.channel1,RobotMap.Elevation.eSensors.channel2, false, EncodingType.k4X);
 		topSwitch = new DigitalInput(RobotMap.Elevation.eSensors.topSwitchPort);
 		bottomSwitch = new DigitalInput(
 				RobotMap.Elevation.eSensors.bottomSwitchPort);
@@ -93,5 +98,38 @@ public class Elevation extends Subsystem {
 		}
 		//encoder.reset();
 		setSpeed(0);
+	}
+	
+	public void reset(){
+		elevationEncoder.reset();
+	}
+	
+	public double eDistance(){
+		return elevationEncoder.getDistance();
+	}
+	
+	public void eEnable(){
+		enable();
+	}
+	
+	public void eDisable(){
+		disable();
+	}
+	
+	public void setDistance(double x){
+		setSetpoint(x);
+	}
+	
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return eDistance();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		elevationTalon1.pidWrite(output);
+		elevationTalon2.pidWrite(output);
 	}
 }
