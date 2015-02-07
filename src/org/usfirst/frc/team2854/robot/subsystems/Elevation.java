@@ -27,6 +27,7 @@ public class Elevation extends PIDSubsystem {
 	
 	
 	int limitReached = 0; // -1 is bottom, 1 is top
+	boolean pidEnabled = false;
 
 	public Elevation() {
 		super("Elevation",RobotMap.Elevation.ePID.P,RobotMap.Elevation.ePID.I,RobotMap.Elevation.ePID.D);
@@ -34,12 +35,17 @@ public class Elevation extends PIDSubsystem {
 		elevationTalon1 = new Talon(RobotMap.Elevation.eMotors.EM1);
 		elevationTalon2 = new Talon(RobotMap.Elevation.eMotors.EM2);
 		*/
+		setAbsoluteTolerance(5);
+		
+		
 		elevationTalon1 = new Talon(1);
 		elevationTalon2 = elevationTalon1;
 		elevationEncoder = new Encoder(RobotMap.Elevation.eSensors.channel1,RobotMap.Elevation.eSensors.channel2, false, EncodingType.k4X);
 		topSwitch = new DigitalInput(RobotMap.Elevation.eSensors.topSwitchPort);
 		bottomSwitch = new DigitalInput(
 				RobotMap.Elevation.eSensors.bottomSwitchPort);
+		
+		
 
 	}
 	
@@ -110,10 +116,16 @@ public class Elevation extends PIDSubsystem {
 	
 	public void eEnable(){
 		enable();
+		pidEnabled = true;
 	}
 	
 	public void eDisable(){
 		disable();
+		pidEnabled = false;
+	}
+	
+	public boolean isEnabled(){
+		return pidEnabled;
 	}
 	
 	public void setDistance(double x){
@@ -129,7 +141,18 @@ public class Elevation extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		elevationTalon1.pidWrite(output);
-		elevationTalon2.pidWrite(output);
+		if(output > 0){
+			checkLimitSwitches();
+			if(checkLimitReached() != 1){
+				elevationTalon1.pidWrite(output);
+				elevationTalon2.pidWrite(output);
+			}
+		}else if(output < 0){
+			checkLimitSwitches();
+			if(checkLimitReached() != -1){
+				elevationTalon1.pidWrite(output);
+				elevationTalon2.pidWrite(output);
+			}
+		}
 	}
 }

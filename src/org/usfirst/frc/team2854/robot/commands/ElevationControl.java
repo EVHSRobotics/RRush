@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2854.robot.commands;
 
 import org.usfirst.frc.team2854.robot.Robot;
+import org.usfirst.frc.team2854.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,14 +12,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ElevationControl extends Command {
 public static double elevationSpeed = 0.8;
 	
+	
     public ElevationControl() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.elevationSystem);
     }
+    
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.elevationSystem.reset();
+    protected void initialize() { 
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,12 +35,28 @@ public static double elevationSpeed = 0.8;
     	
     	if(Robot.oi.getA()){
     		Robot.elevationSystem.safeMove(-elevationSpeed);
-    		
+    		if(Robot.elevationSystem.isEnabled()){
+    			Robot.elevationSystem.eDisable();
+    		}
     	}else if(Robot.oi.getX()){
     		Robot.elevationSystem.safeMove(elevationSpeed);
-    	}else{
+    		if(Robot.elevationSystem.isEnabled()){
+    			Robot.elevationSystem.eDisable();
+    		}
+    	}else if(Robot.oi.getB()){
+    		if(!Robot.elevationSystem.isEnabled()){
+    			Robot.elevationSystem.eEnable();
+    		}
+    		Robot.elevationSystem.setDistance(RobotMap.Elevation.setPoint.BOTTOM);
+    	}else if(Robot.oi.getY()){
+    		if(!Robot.elevationSystem.isEnabled()){
+    			Robot.elevationSystem.eEnable();
+    		}
+    		Robot.elevationSystem.setDistance(RobotMap.Elevation.setPoint.TOP);
+    	}/*else{
     		Robot.elevationSystem.safeMove(0);
-    	}
+    		
+    	}*/
     }
     
     protected void updateSwitches(){

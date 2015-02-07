@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2854.robot;
 
+import org.usfirst.frc.team2854.robot.commands.Auto;
 import org.usfirst.frc.team2854.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2854.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2854.robot.commands.NoAction;
@@ -58,6 +59,7 @@ public class Robot extends IterativeRobot {
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new NoAction());
 		autoChooser.addObject("Experimental Auto", new AutonomousCommand());
+		autoChooser.addObject("Basic Auto",new Auto());
 		SmartDashboard.putData("Autonomous Mode Choooser", autoChooser);
 	}
 

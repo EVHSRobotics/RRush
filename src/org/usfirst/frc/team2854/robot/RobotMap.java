@@ -38,6 +38,10 @@ public class RobotMap {
 			public static final double I = 0.001;
 			public static final double D = 0.001;
 		}
+		public static class setPoint{
+			public static final double BOTTOM = 0;
+			public static final double TOP = 10;
+		}
 	}
 	
 	
