@@ -8,8 +8,9 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	public static class Config {
-		public static final double DEADBAND = .3;
+		public static final double DEADBAND = .2;
 	    public static final double SENSITIVITY = 1;
+	    public static final double TURN_SENSITIVITY = .7;
 	}
 	
 	

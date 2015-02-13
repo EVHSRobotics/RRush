@@ -24,12 +24,12 @@ public class RobotMap {
 	 */
 	public static class Elevation{
 		public static class eMotors{
-			public static final int EM1 = 5;
-			public static final int EM2 = 6;
+			public static final int EM1 = 2;
+			public static final int EM2 = 3;
 		}
 		public static class eSensors{
-			public static int channel1 = 2;
-			public static int channel2 = 3;
+			public static int channel1 = 8;
+			public static int channel2 = 9;
 			public static int topSwitchPort = 1;
 			public static int bottomSwitchPort = 0;
 			
@@ -44,10 +44,10 @@ public class RobotMap {
 		 *
 		 */
 		public static class Motor {
-			public static final int FL = 1;
-			public static final int FR = 2;
-			public static final int BR = 3;
-			public static final int BL = 4;
+			public static final int FL = 0;
+			public static final int FR = 3;
+			public static final int BR = 4;
+			public static final int BL = 1;
 		}
 		/**
 		 * Sensor IDs 
@@ -80,10 +80,10 @@ public class RobotMap {
 		 * 
 		 */
 		public static class TestMotor{
-			public static final int FL = 2;
-			public static final int FR = 3;
-			public static final int BR = 1;
-			public static final int BL = 4;
+			public static final int FL = 0;
+			public static final int FR = 5;
+			public static final int BR = 4;
+			public static final int BL = 1;
 		}
 	}
 

@@ -2,6 +2,7 @@ package org.usfirst.frc.team2854.robot.commands;
 
 import org.usfirst.frc.team2854.robot.OI;
 import org.usfirst.frc.team2854.robot.Robot;
+import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +15,8 @@ public class TestDrive extends Command {
 	public  double drivePercentage = 1;
 	double leftValue; 
 	double rightValue;
+	double turnDirection;
+	double rotateValue;
 	
     public TestDrive() {
         // Use requires() here to declare subsystem dependencies
@@ -40,18 +43,35 @@ public class TestDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.getStart()){
+    		TestDriveTrain.LEFT_CALIBRATION = SmartDashboard.getNumber("Left Cal", TestDriveTrain.LEFT_CALIBRATION);
+    		TestDriveTrain.RIGHT_CALIBRATION = SmartDashboard.getNumber("Right Cal", TestDriveTrain.RIGHT_CALIBRATION);
     		
         	drivePercentage = SmartDashboard.getNumber("Teleop Drive Speed", drivePercentage);
         	System.out.println("NEW Drive SPEED: " + drivePercentage);
     	}
     	
-    	leftValue = Robot.oi.getLeftY(); 
-    	rightValue = Robot.oi.getRightY();
+    	leftValue = OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getLeftY(), OI.Config.DEADBAND); 
+    	//rightValue =  OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getRightY(), OI.Config.DEADBAND); 
+    	rotateValue = OI.Config.SENSITIVITY * OI.fixDeadBand(Robot.oi.getLeftX(), OI.Config.DEADBAND);
     	
     	adjustFullValues();
     	
-    	    	
-    	Robot.testDriveTrain.drive(leftValue * drivePercentage, rightValue * drivePercentage);
+    	
+    	
+    	if(Robot.oi.getLeftTrigger() > 0){
+    		turnDirection = OI.Config.TURN_SENSITIVITY* -1 *Robot.oi.getLeftTrigger();
+    	}else if(Robot.oi.getRightTrigger() > 0){
+    		turnDirection =  OI.Config.TURN_SENSITIVITY * Robot.oi.getRightTrigger(); //multiplied by -1 to reverse direction
+    	}else{
+    		turnDirection = 0;
+    	}
+    	if(Math.abs(turnDirection) > 0){
+
+        	Robot.testDriveTrain.rotate(turnDirection);
+    	}else{
+
+        	Robot.testDriveTrain.drive(leftValue * drivePercentage, rotateValue * drivePercentage);//, rightValue * drivePercentage);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

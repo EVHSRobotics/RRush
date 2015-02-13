@@ -38,6 +38,8 @@ public static double elevationSpeed = 0.8;
     	}else{
     		Robot.elevationSystem.safeMove(0);
     	}
+    	
+    	//System.out.println("ENCODER VAL: "+ Robot.elevationSystem.returnDistance());
     }
     
     protected void updateSwitches(){

@@ -18,24 +18,28 @@ public class Elevation extends Subsystem {
 	//Talon elevationTalon2;
 	Talon elevationTalon1;
 	Talon elevationTalon2;
-	//Encoder encoder;
+	Encoder encoder;
 	DigitalInput bottomSwitch;
 	DigitalInput topSwitch;
 	int limitReached = 0; // -1 is bottom, 1 is top
 
 	public Elevation() {
-		/*
+		
 		elevationTalon1 = new Talon(RobotMap.Elevation.eMotors.EM1);
 		elevationTalon2 = new Talon(RobotMap.Elevation.eMotors.EM2);
-		*/
-		elevationTalon1 = new Talon(1);
-		elevationTalon2 = elevationTalon1;
-		//encoder = new Encoder(RobotMap.Elevation.eSensors.channel1,
-				//RobotMap.Elevation.eSensors.channel2, false, EncodingType.k4X);
+		
+		//elevationTalon1 = new Talon(1);
+		//elevationTalon2 = elevationTalon1;
+		encoder = new Encoder(RobotMap.Elevation.eSensors.channel1,
+				RobotMap.Elevation.eSensors.channel2, false, EncodingType.k4X);
 		topSwitch = new DigitalInput(RobotMap.Elevation.eSensors.topSwitchPort);
 		bottomSwitch = new DigitalInput(
 				RobotMap.Elevation.eSensors.bottomSwitchPort);
 
+	}
+	
+	public double returnDistance(){
+		return encoder.getDistance();
 	}
 	
 	public void initDefaultCommand() {
@@ -55,6 +59,7 @@ public class Elevation extends Subsystem {
 
 	public void setLimitSwitch(int value) {
 		limitReached = value;
+		System.out.println("LIMIT SWITCH HIT:"+ value);
 	}
 
 	public int checkLimitReached() {
@@ -72,14 +77,16 @@ public class Elevation extends Subsystem {
 		} else if (limitReached == -1) {
 			if (speed < 0) {
 				setSpeed(0);
-			} else {
+				System.out.println("BOTTOM LIMIT REACHED");
+			} else if (speed > 0) {
 				setSpeed(speed);
 				setLimitSwitch(0);
 			}
 		} else if (limitReached == 1) {
 			if(speed > 0){
 				setSpeed(0);
-			} else{
+				System.out.println("TOP LIMIT REACHED");
+			} else if (speed < 0){
 				setSpeed(speed);
 				setLimitSwitch(0);
 			}
@@ -91,7 +98,7 @@ public class Elevation extends Subsystem {
 		while (bottomSwitch.get()) {
 			Timer.delay(10);
 		}
-		//encoder.reset();
+		encoder.reset();
 		setSpeed(0);
 	}
 }
