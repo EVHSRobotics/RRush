@@ -4,6 +4,7 @@ package org.usfirst.frc.team2854.robot;
 import org.usfirst.frc.team2854.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2854.robot.commands.MoveForward;
 import org.usfirst.frc.team2854.robot.commands.NoAction;
+import org.usfirst.frc.team2854.robot.commands.ZeroEncoder;
 import org.usfirst.frc.team2854.robot.subsystems.Elevation;
 import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
 

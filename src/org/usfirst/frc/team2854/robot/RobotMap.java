@@ -28,8 +28,8 @@ public class RobotMap {
 			public static final int EM2 = 3;
 		}
 		public static class eSensors{
-			public static int channel1 = 8;
-			public static int channel2 = 9;
+			public static int channel1 = 2;
+			public static int channel2 = 3;
 			public static int topSwitchPort = 1;
 			public static int bottomSwitchPort = 0;
 			

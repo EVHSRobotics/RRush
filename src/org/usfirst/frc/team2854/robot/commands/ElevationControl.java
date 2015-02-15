@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2854.robot.commands;
 
+import org.usfirst.frc.team2854.robot.OI;
 import org.usfirst.frc.team2854.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -18,14 +20,28 @@ public static double elevationSpeed = 0.8;
 
     // Called just before this Command runs the first time
     protected void initialize() {
+
+    	Scheduler.getInstance().add(new ZeroEncoder());
     }
 
     // Called repeatedly when this Command is scheduled to run
+    public void checkButtons(){
+    	System.out.println("8:"+Robot.oi.getButton(8));
+    	System.out.println("9:"+Robot.oi.getButton(9));
+    	System.out.println("10:"+Robot.oi.getButton(10));
+    	System.out.println("11:"+Robot.oi.getButton(11));
+    	System.out.println("A6:"+Robot.oi.getAxis(6));
+    }
+    
     protected void execute() {
+    	checkButtons();
     	if(Robot.oi.getStart()){
     		
         	elevationSpeed = SmartDashboard.getNumber("Elevation Speed", elevationSpeed);
         	System.out.println("NEW SPEED: " + elevationSpeed);
+    	}if(Robot.oi.getBack()){
+    		System.out.println("ZERO ENCODER COMMAND CALL");
+        	Scheduler.getInstance().add(new ZeroEncoder());
     	}
     	
     	updateSwitches();
@@ -39,7 +55,7 @@ public static double elevationSpeed = 0.8;
     		Robot.elevationSystem.safeMove(0);
     	}
     	
-    	//System.out.println("ENCODER VAL: "+ Robot.elevationSystem.returnDistance());
+    	System.out.println("ENCODER VAL: "+ Robot.elevationSystem.returnDistance());
     }
     
     protected void updateSwitches(){

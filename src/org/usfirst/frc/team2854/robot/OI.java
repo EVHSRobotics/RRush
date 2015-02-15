@@ -10,7 +10,7 @@ public class OI {
 	public static class Config {
 		public static final double DEADBAND = .2;
 	    public static final double SENSITIVITY = 1;
-	    public static final double TURN_SENSITIVITY = .7;
+	    public static final double TURN_SENSITIVITY = .5;
 	}
 	
 	
@@ -106,6 +106,14 @@ public class OI {
 
 	public boolean getStart() {
 		return controller.getRawButton(8);
+	}
+	
+	public boolean getButton(int b){
+		return controller.getRawButton(b);
+	}
+	
+	public double getAxis(int a){
+		return controller.getRawAxis(a);
 	}
 
 	//2013 numbers (may have changed)

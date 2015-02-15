@@ -22,6 +22,12 @@ public class Elevation extends Subsystem {
 	DigitalInput bottomSwitch;
 	DigitalInput topSwitch;
 	int limitReached = 0; // -1 is bottom, 1 is top
+	
+	/*800 - height to pick up 1 tote
+	2000 - height to stack 1 tote
+	3000  max height
+	*/
+	int topEncoderValue = 3050;
 
 	public Elevation() {
 		
@@ -30,16 +36,18 @@ public class Elevation extends Subsystem {
 		
 		//elevationTalon1 = new Talon(1);
 		//elevationTalon2 = elevationTalon1;
-		encoder = new Encoder(RobotMap.Elevation.eSensors.channel1,
-				RobotMap.Elevation.eSensors.channel2, false, EncodingType.k4X);
+		encoder = new Encoder(2,3, true, EncodingType.k4X);
 		topSwitch = new DigitalInput(RobotMap.Elevation.eSensors.topSwitchPort);
 		bottomSwitch = new DigitalInput(
 				RobotMap.Elevation.eSensors.bottomSwitchPort);
+		
+		
+		
 
 	}
 	
 	public double returnDistance(){
-		return encoder.getDistance();
+		return encoder.get();
 	}
 	
 	public void initDefaultCommand() {
@@ -58,8 +66,10 @@ public class Elevation extends Subsystem {
 	}
 
 	public void setLimitSwitch(int value) {
+		/*
 		limitReached = value;
 		System.out.println("LIMIT SWITCH HIT:"+ value);
+		*/
 	}
 
 	public int checkLimitReached() {
@@ -95,8 +105,8 @@ public class Elevation extends Subsystem {
 
 	public void zeroEncoder() {
 		setSpeed(-.5);
-		while (bottomSwitch.get()) {
-			Timer.delay(10);
+		while (!bottomSwitch.get()) {
+			Timer.delay(.01);
 		}
 		encoder.reset();
 		setSpeed(0);
