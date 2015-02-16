@@ -41,10 +41,15 @@ public class DriveTrain extends Subsystem {
 	        System.out.println("DriveX: " +x + " DriveY: " + y);
 	    }
 	    
-	    double front_left = y + t + x;
-	    double front_right = y - t - x;
-	    double back_left = y + t - x;
-	    double back_right = y - t + x;
+	    double front_left = y + t + x;   
+	    double front_right = y - t - x;  
+	    double back_left = y + t - x;    
+	    double back_right = y - t + x;   
+	    
+	    //fl   y + x 
+	    //fr  -y + x
+	    //bl   y - x
+	    //br  -y - x
 	    
 	    double max = Math.abs(front_left);
 	    if (Math.abs(front_right)>max) {
