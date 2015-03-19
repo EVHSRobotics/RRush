@@ -24,31 +24,25 @@ public class RobotMap {
 	 */
 	public static class Elevation{
 		public static class eMotors{
-			public static final int EM1 = 2;
-			public static final int EM2 = 3;
+			public static final int EM1 = 2;  //2
+			public static final int EM2 = 3;  //3
 		}
 		public static class eSensors{
-			public static int channel1 = 2;
-			public static int channel2 = 3;
-			public static int topSwitchPort = 1;
-			public static int bottomSwitchPort = 0;
+			public static int channel1 = 5;
+			public static int channel2 = 6;
+			public static int topSwitchPort = 9;
+			public static int bottomSwitchPort = 8;
 			
 		}
 	}
 	
+	public static class Intake{
+		public static final int left = 6;
+		public static final int right = 7;
+	}
+	
 	
 	public static class Drive {
-		/**
-		 * Talon Motor IDs
-		 * @author kevin
-		 *
-		 */
-		public static class Motor {
-			public static final int FL = 0;
-			public static final int FR = 3;
-			public static final int BR = 4;
-			public static final int BL = 1;
-		}
 		/**
 		 * Sensor IDs 
 		 * @author kevin

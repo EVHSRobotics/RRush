@@ -20,42 +20,36 @@ public static double elevationSpeed = 0.8;
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
-    	Scheduler.getInstance().add(new ZeroEncoder());
+    	elevationSpeed = SmartDashboard.getNumber("Elevation Speed", elevationSpeed);
+    	//Robot.elevationSystem.moveToBottom(elevationSpeed);
     }
 
-    // Called repeatedly when this Command is scheduled to run
-    public void checkButtons(){
-    	System.out.println("8:"+Robot.oi.getButton(8));
-    	System.out.println("9:"+Robot.oi.getButton(9));
-    	System.out.println("10:"+Robot.oi.getButton(10));
-    	System.out.println("11:"+Robot.oi.getButton(11));
-    	System.out.println("A6:"+Robot.oi.getAxis(6));
-    }
-    
     protected void execute() {
-    	checkButtons();
+    	//System.out.println("ENCODER VAL: "+ Robot.elevationSystem.returnDistance());
     	if(Robot.oi.getStart()){
     		
         	elevationSpeed = SmartDashboard.getNumber("Elevation Speed", elevationSpeed);
         	System.out.println("NEW SPEED: " + elevationSpeed);
     	}if(Robot.oi.getBack()){
-    		System.out.println("ZERO ENCODER COMMAND CALL");
-        	Scheduler.getInstance().add(new ZeroEncoder());
+    		//System.out.println("ZERO ENCODER COMMAND CALL");
+        	//Scheduler.getInstance().add(new ZeroEncoder());
+    		System.out.println("DISABLE SAFETIES");
+    		
     	}
     	
     	updateSwitches();
     	
-    	if(Robot.oi.getA()){
-    		Robot.elevationSystem.safeMove(-elevationSpeed);
-    		
-    	}else if(Robot.oi.getX()){
-    		Robot.elevationSystem.safeMove(elevationSpeed);
+    	if(Robot.oi.getB()){
+    		Robot.elevationSystem.moveToBottom(elevationSpeed);
+    	}else if(Robot.oi.getY()){
+    		Robot.elevationSystem.moveToTop(elevationSpeed);
+    	}else if(Math.abs(OI.fixDeadBand(Robot.oi.getRightY(),  OI.Config.DEADBAND)) > 0 ){
+    		Robot.elevationSystem.safeMove(elevationSpeed * -Robot.oi.getRightY());
     	}else{
     		Robot.elevationSystem.safeMove(0);
     	}
     	
-    	System.out.println("ENCODER VAL: "+ Robot.elevationSystem.returnDistance());
+    	
     }
     
     protected void updateSwitches(){

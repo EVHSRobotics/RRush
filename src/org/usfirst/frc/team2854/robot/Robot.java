@@ -1,13 +1,14 @@
 
 package org.usfirst.frc.team2854.robot;
 
-import org.usfirst.frc.team2854.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2854.robot.commands.FullAutonomous;
 import org.usfirst.frc.team2854.robot.commands.MoveForward;
 import org.usfirst.frc.team2854.robot.commands.NoAction;
-import org.usfirst.frc.team2854.robot.commands.ZeroEncoder;
 import org.usfirst.frc.team2854.robot.subsystems.Elevation;
+import org.usfirst.frc.team2854.robot.subsystems.Intake;
 import org.usfirst.frc.team2854.robot.subsystems.TestDriveTrain;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	
 	public static final TestDriveTrain testDriveTrain = new TestDriveTrain();
 	public static final Elevation elevationSystem = new Elevation();
+	public static final Intake intakeSystem = new Intake();
 	
 	//options for autonomous 
 	SendableChooser autoChooser;
@@ -47,20 +49,27 @@ public class Robot extends IterativeRobot {
 		
 		dashboard();
 		
+		CameraServer server = CameraServer.getInstance();
+		server.setQuality(50);
+		server.startAutomaticCapture("cam0");
         // instantiate the command used for the autonomous period
         
     }
 	
 	private void dashboard() {
+		SmartDashboard.putNumber("Intake Speed", .8);
 		SmartDashboard.putNumber("Elevation Speed", .8);
+		SmartDashboard.putNumber("Auto Elevation Speed", .7);
 		SmartDashboard.putNumber("Teleop Drive Speed", 1);
 		SmartDashboard.putNumber("Autonomous Drive Speed", 1);
 		SmartDashboard.putNumber("Left Cal", TestDriveTrain.LEFT_CALIBRATION);
 		SmartDashboard.putNumber("Right Cal", TestDriveTrain.RIGHT_CALIBRATION);
 		SmartDashboard.putNumber("Forward Time", .5);
+		SmartDashboard.putNumber("Auto Rotate Time", .5);
+		
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new NoAction());
-		autoChooser.addObject("Experimental Auto", new AutonomousCommand());
+		autoChooser.addObject("Experimental Auto", new FullAutonomous());
 		autoChooser.addObject("Forward", new MoveForward());
 		SmartDashboard.putData("Autonomous Mode Choooser", autoChooser);
 	}

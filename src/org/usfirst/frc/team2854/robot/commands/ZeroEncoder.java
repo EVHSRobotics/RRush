@@ -18,7 +18,7 @@ public class ZeroEncoder extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	System.out.println("ENCODER INIT");
-    	Robot.elevationSystem.zeroEncoder();
+    	Robot.elevationSystem.moveToBottom(.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,12 +27,11 @@ public class ZeroEncoder extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.elevationSystem.returnDistance() == 0);
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	System.out.println("ENCODER ZEROED");
     }
 
     // Called when another command which requires one or more of the same

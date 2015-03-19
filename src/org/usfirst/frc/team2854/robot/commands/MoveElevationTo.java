@@ -3,15 +3,13 @@ package org.usfirst.frc.team2854.robot.commands;
 import org.usfirst.frc.team2854.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class AutonomousCommand extends Command {
+public class MoveElevationTo extends Command {
 
-	
-    public AutonomousCommand() {
+    public MoveElevationTo() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
@@ -19,8 +17,8 @@ public class AutonomousCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	double speed = SmartDashboard.getNumber("Autonomous Drive Speed");
-    	Robot.testDriveTrain.drive(speed, speed);
+    	System.out.println("ELEV MOVE INIT");
+    	Robot.elevationSystem.moveToBottom(.8);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,7 +27,7 @@ public class AutonomousCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (Robot.elevationSystem.returnDistance() == 0);
     }
 
     // Called once after isFinished returns true
